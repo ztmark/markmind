@@ -71,6 +71,26 @@ td.post-title {
 
 .footer {
     color: #a3a3a3;
-    position: absolute;
-    bottom: 5px;
+    /*position: absolute;*/
+    bottom: -15px;
+}
+
+
+.article {
+    color: #525252;
+    background-color: #ffffff;
+    padding: 10px 30px;
+    height: auto;
+}
+
+.article-info {
+    margin-bottom: 10px;
+    padding-bottom: 15px;
+    padding-left: 5px;
+    border-bottom: solid 1px #ECECEC;
+}
+
+.article-info time {
+    font-size: 12px;
+    margin-left: 5px;
 }

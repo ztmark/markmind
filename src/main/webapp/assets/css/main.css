@@ -1,7 +1,6 @@
 @charset "UTF-8";
 
 body {
-    text-shadow: 0 1px 0 #ffffff;
     background-color: #f5f5f5;
 }
 
@@ -64,6 +63,9 @@ th:first-child {
 
 td.post-date {
     width: 35%;
+}
+td.post-title {
+    width: 50%;
 }
 
 

@@ -15,9 +15,9 @@
     <title>index</title>
 
     <!-- Bootstrap -->
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
-    <link type="text/css" rel="stylesheet" href="assets/css/main.css" />
-    <link rel="stylesheet" href="assets/css/github.css" />
+    <link href="../../assets/css/bootstrap.min.css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="../../assets/css/main.css" />
+    <link rel="stylesheet" href="../../assets/css/github.css" />
 
 </head>
 <body>
@@ -85,10 +85,10 @@
     <small> 本作品采用<a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.zh">知识共享署名-相同方式共享 3.0 未本地化版本许可协议</a>进行许可。 <br />Theme By[<a href="http://yangwenmai.github.io/">maiyang</a>]</small>
 </div>
 
-<script src="assets/js/jquery-2.1.1.min.js"></script>
-<script src="assets/js/bootstrap.min.js"></script>
-<script src="assets/js/marked.js" type="text/javascript" charset="utf-8"></script>
-<script src="assets/js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../assets/js/jquery-2.1.1.min.js"></script>
+<script src="../../assets/js/bootstrap.min.js"></script>
+<script src="../../assets/js/marked.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../assets/js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
 <script>
     var text = document.getElementById("text").innerHTML;
     document.getElementById("content").innerHTML = marked(text);

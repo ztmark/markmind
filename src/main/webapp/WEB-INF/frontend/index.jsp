@@ -7,8 +7,8 @@
     <title>index</title>
 
     <!-- Bootstrap -->
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
-    <link type="text/css" rel="stylesheet" href="assets/css/main.css" />
+    <link href="../../assets/css/bootstrap.min.css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="../../assets/css/main.css" />
 
 </head>
 <body>
@@ -82,8 +82,8 @@
 </div>
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="assets/js/jquery-2.1.1.min.js"></script>
+<script src="../../assets/js/jquery-2.1.1.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="assets/js/bootstrap.min.js"></script>
+<script src="../../assets/js/bootstrap.min.js"></script>
 </body>
 </html>

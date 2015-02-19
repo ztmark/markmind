@@ -12,7 +12,7 @@ import java.sql.Statement;
 import java.util.Properties;
 
 
-public class DBUtil {
+public final class DBUtil {
 
     private static DataSource ds;
 
@@ -29,8 +29,13 @@ public class DBUtil {
         }
     }
 
-    public Connection getConnection() throws SQLException {
-        return ds.getConnection();
+    public Connection getConnection() {
+        try {
+            return ds.getConnection();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public void release(Connection conn, Statement st, ResultSet rs) {

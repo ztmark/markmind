@@ -2,7 +2,7 @@
   Created by IntelliJ IDEA.
   User: Mark
   Date: 2015/2/16
-  Time: 15:56
+  Time: 15:55
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -15,9 +15,9 @@
     <title>Post</title>
 
     <!-- Bootstrap -->
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
-    <link type="text/css" rel="stylesheet" href="assets/css/main.css" />
-    <script src="assets/js/jquery-2.1.1.min.js"></script>
+    <link href="../../assets/css/bootstrap.min.css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="../../assets/css/main.css" />
+    <script src="../../assets/js/jquery-2.1.1.min.js"></script>
     <style type="text/css">
         body {
             padding-bottom: 40px;
@@ -29,6 +29,8 @@
             padding: 15px;
             margin: 0 auto;
         }
+        .form-signin .form-signin-heading,
+
         .form-signin .form-control {
             position: relative;
             height: auto;
@@ -62,31 +64,28 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Sign In</a></li>
+                <li><a href="#">Sign Up</a></li>
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
 
-<div class="container">
+<div class="container-fluid">
 
     <form class="form-signin">
-        <h2 class="form-signin-heading">Please Sign Up</h2>
+        <h2 class="form-signin-heading">Please Sign in</h2>
         <label for="inputEmail" class="sr-only">Email address</label>
         <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
         <label for="inputPassword" class="sr-only">Password</label>
         <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-        <label for="confirmPassword" class="sr-only">Password</label>
-        <input type="password" id="confirmPassword" class="form-control" placeholder="Confirm Password" required>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign In</button>
     </form>
 
 </div>
 
 
 <!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="assets/js/bootstrap.min.js"></script>
-<script src="assets/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../assets/js/bootstrap.min.js"></script>
 
 </body>
 </html>

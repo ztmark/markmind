@@ -94,3 +94,8 @@ td.post-title {
     font-size: 12px;
     margin-left: 5px;
 }
+
+
+.hide {
+    display: none;
+}

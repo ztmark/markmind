@@ -1,4 +1,4 @@
-package com.mark.dao;
+package com.mark.domain;
 
 /**
  * Author: Mark

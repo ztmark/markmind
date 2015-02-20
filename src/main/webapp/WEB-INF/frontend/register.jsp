@@ -15,9 +15,9 @@
     <title>Post</title>
 
     <!-- Bootstrap -->
-    <link href="../../assets/css/bootstrap.min.css" rel="stylesheet">
-    <link type="text/css" rel="stylesheet" href="../../assets/css/main.css" />
-    <script src="../../assets/js/jquery-2.1.1.min.js"></script>
+    <link href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/main.css" />
+    <script src="${pageContext.request.contextPath}/assets/js/jquery-2.1.1.min.js"></script>
     <style type="text/css">
         body {
             padding-bottom: 40px;
@@ -70,23 +70,40 @@
 
 <div class="container">
 
-    <form class="form-signin">
+    <form action="${pageContext.request.contextPath}/signup" method="post" class="form-signin">
+        <span id="message" class="text-danger">${msg}</span>
         <h2 class="form-signin-heading">Please Sign Up</h2>
+        <label for="inputUsername" class="sr-only">Username</label>
+        <input name="username" type="text" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
         <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+        <input name="email" type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
         <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+        <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
         <label for="confirmPassword" class="sr-only">Password</label>
         <input type="password" id="confirmPassword" class="form-control" placeholder="Confirm Password" required>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button>
+
+        <button id="submit" class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button>
     </form>
 
 </div>
 
 
-<!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="../../assets/js/bootstrap.min.js"></script>
-<script src="../../assets/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
-
+<script src="${pageContext.request.contextPath}/assets/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+    (function(){
+        $("form").submit(function(e) {
+            var pwd1 = $("#inputPassword").val();
+            var pwd2 = $("#confirmPassword").val();
+            var msg = $("#message");
+            if (pwd1.length < 6) {
+                msg.text("密码太短");
+                e.preventDefault();
+            } else if (pwd1 !== pwd2) {
+                msg.text("两次密码不一致");
+                e.preventDefault();
+            }
+        });
+    })();
+</script>
 </body>
 </html>

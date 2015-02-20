@@ -6,5 +6,24 @@
 
     <display-name>Servlet 3.0 Web Application</display-name>
 
+    <servlet>
+        <servlet-name>SignInServlet</servlet-name>
+        <servlet-class>com.mark.controller.SignInServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>SignInServlet</servlet-name>
+        <url-pattern>/signin</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>SignUpServlet</servlet-name>
+        <servlet-class>com.mark.controller.SignUpServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>SignUpServlet</servlet-name>
+        <url-pattern>/signup</url-pattern>
+    </servlet-mapping>
 
 </web-app>

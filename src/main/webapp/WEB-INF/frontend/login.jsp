@@ -15,9 +15,9 @@
     <title>Post</title>
 
     <!-- Bootstrap -->
-    <link href="../../assets/css/bootstrap.min.css" rel="stylesheet">
-    <link type="text/css" rel="stylesheet" href="../../assets/css/main.css" />
-    <script src="../../assets/js/jquery-2.1.1.min.js"></script>
+    <link href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/main.css" />
+    <script src="${pageContext.request.contextPath}/assets/js/jquery-2.1.1.min.js"></script>
     <style type="text/css">
         body {
             padding-bottom: 40px;
@@ -53,7 +53,6 @@
 <body>
 <nav class="navbar navbar-default">
     <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
             <a class="navbar-brand" href="#">
                 <span class="site-name">MarkMind</span>
@@ -61,31 +60,41 @@
             </a>
         </div>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#">Sign Up</a></li>
             </ul>
-        </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
+        </div>
+    </div>
 </nav>
 
 <div class="container-fluid">
 
-    <form class="form-signin">
+    <form action="${pageContext.request.contextPath}/signin" method="post" class="form-signin">
+        <span id="message" class="text-danger">${msg}</span>
         <h2 class="form-signin-heading">Please Sign in</h2>
-        <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+        <label for="inputUsername" class="sr-only">Email address</label>
+        <input name="username" type="text" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
         <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+        <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign In</button>
     </form>
 
 </div>
 
 
-<!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="../../assets/js/bootstrap.min.js"></script>
-
+<script src="${pageContext.request.contextPath}/assets/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+    (function(){
+        $("form").submit(function(e) {
+            var pwd = $("#inputPassword").val();
+            var msg = $("#message");
+            if (pwd.length < 6) {
+                msg.text("密码错误");
+                e.preventDefault();
+            }
+        });
+    })();
+</script>
 </body>
 </html>

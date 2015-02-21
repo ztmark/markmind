@@ -14,7 +14,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Post</title>
 
-    <!-- Bootstrap -->
     <link href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/main.css" />
     <script src="${pageContext.request.contextPath}/assets/js/jquery-2.1.1.min.js"></script>
@@ -29,7 +28,7 @@
             padding: 15px;
             margin: 0 auto;
         }
-        .form-signin .form-signin-heading,
+
 
         .form-signin .form-control {
             position: relative;
@@ -62,7 +61,7 @@
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Sign Up</a></li>
+                <li><a href="signup">Sign Up</a></li>
             </ul>
         </div>
     </div>

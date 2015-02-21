@@ -14,7 +14,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Post</title>
 
-    <!-- Bootstrap -->
     <link href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/main.css" />
     <script src="${pageContext.request.contextPath}/assets/js/jquery-2.1.1.min.js"></script>
@@ -51,7 +50,6 @@
 <body>
 <nav class="navbar navbar-default">
     <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
             <a class="navbar-brand" href="#">
                 <span class="site-name">MarkMind</span>
@@ -59,16 +57,15 @@
             </a>
         </div>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Sign In</a></li>
+                <li><a href="signin">Sign In</a></li>
             </ul>
-        </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
+        </div>
+    </div>
 </nav>
 
-<div class="container">
+<div class="container-fluid">
 
     <form action="${pageContext.request.contextPath}/signup" method="post" class="form-signin">
         <span id="message" class="text-danger">${msg}</span>

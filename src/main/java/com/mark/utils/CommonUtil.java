@@ -26,7 +26,7 @@ public final class CommonUtil {
     }
 
     public static String UUID() {
-        return UUID.randomUUID().toString();
+        return String.join("", UUID.randomUUID().toString().split("-"));
     }
 
 }

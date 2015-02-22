@@ -27,7 +27,7 @@ public class SignInServlet extends HttpServlet {
         if (user != null) {
             request.getSession().setAttribute("user", user);
             request.getSession().setAttribute("msg", "登录成功，3秒后跳转...");
-            request.getSession().setAttribute("url","manage.html");
+            request.getSession().setAttribute("url","home");
             request.getRequestDispatcher("WEB-INF/message.jsp").forward(request, response);
         } else {
             request.getSession().setAttribute("msg", "用户名或密码错误");
@@ -36,6 +36,13 @@ public class SignInServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("WEB-INF/frontend/login.jsp").forward(request, response);
+        User user = (User) request.getSession().getAttribute("user");
+        if (user != null) {
+            request.getSession().setAttribute("msg", "您已登录，3秒后跳转...");
+            request.getSession().setAttribute("url","home");
+            request.getRequestDispatcher("WEB-INF/message.jsp").forward(request, response);
+        } else {
+            request.getRequestDispatcher("WEB-INF/frontend/login.jsp").forward(request, response);
+        }
     }
 }

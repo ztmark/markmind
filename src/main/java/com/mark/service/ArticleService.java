@@ -27,4 +27,16 @@ public class ArticleService {
         return message;
     }
 
+    public Message<Article> getArticle(String uuid) {
+        Message<Article> message = null;
+        Article article = dao.getArticle(uuid);
+        if (article == null) {
+            message = new Message<Article>(false, "服务器忙，请稍后重试！");
+        } else {
+            message = new Message<Article>(true, "success");
+            message.setData(article);
+        }
+        return message;
+    }
+
 }

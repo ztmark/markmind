@@ -48,7 +48,7 @@
                         <td></td>
                         <td class="post-date">${article.date}</td>
                         <td class="post-title">
-                            <a href="${article.uuid}">${article.title}</a>
+                            <a href="posts/${article.uuid}">${article.title}</a>
                         </td>
                     </tr>
                 </c:forEach>

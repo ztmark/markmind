@@ -26,4 +26,24 @@
         <url-pattern>/signup</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>HomeServlet</servlet-name>
+        <servlet-class>com.mark.controller.HomeServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>HomeServlet</servlet-name>
+        <url-pattern>/home</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ShowArticleServlet</servlet-name>
+        <servlet-class>com.mark.controller.ShowArticleServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>ShowArticleServlet</servlet-name>
+        <url-pattern>/posts/*</url-pattern>
+    </servlet-mapping>
+
 </web-app>

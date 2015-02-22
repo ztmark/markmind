@@ -8,7 +8,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -48,6 +47,33 @@ public class ArticleDao {
             util.release(conn, ps, rs);
         }
         return articles;
+    }
+
+    public Article getArticle(String uuid) {
+        String sql = "select title, text, date from article where uuid = ? limit 1";
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Article article = new Article();
+        try {
+            conn = util.getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, uuid);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                article.setUuid(uuid);
+                article.setTitle(rs.getString("title"));
+                article.setText(rs.getString("text"));
+                article.setDate(new Date(rs.getInt("date")));
+                return article;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            article = null;
+        } finally {
+            util.release(conn, ps, rs);
+        }
+        return article;
     }
 
 }

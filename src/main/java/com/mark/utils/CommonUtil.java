@@ -25,6 +25,11 @@ public final class CommonUtil {
         }
     }
 
+    public static String getURLParam(String pathInfo) {
+        String[] path = pathInfo.split("/");
+        return path[path.length - 1];
+    }
+
     public static String UUID() {
         return String.join("", UUID.randomUUID().toString().split("-"));
     }

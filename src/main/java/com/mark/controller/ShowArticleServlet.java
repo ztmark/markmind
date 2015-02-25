@@ -3,6 +3,7 @@ package com.mark.controller;
 import com.mark.domain.Article;
 import com.mark.domain.Message;
 import com.mark.service.ArticleService;
+import com.mark.utils.CommonUtil;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,8 +26,7 @@ public class ShowArticleServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String[] path = request.getPathInfo().split("/");
-        String uuid = path[path.length - 1];
+        String uuid = CommonUtil.getURLParam(request.getPathInfo());
         Message<Article> message = service.getArticle(uuid);
         if (message.success) {
             request.getSession().setAttribute("article", message.getData());

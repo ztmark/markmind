@@ -46,7 +46,6 @@ public class ArticleService {
         article.setUuid(CommonUtil.UUID());
         article.setTitle(title);
         article.setText(text);
-        article.setDate(Calendar.getInstance().getTime());
         Message message;
         if (dao.addArticle(article, userId)) {
             message = new Message(true, "添加成功！");

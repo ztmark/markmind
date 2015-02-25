@@ -46,4 +46,14 @@
         <url-pattern>/posts/*</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>ArticleControlServlet</servlet-name>
+        <servlet-class>com.mark.controller.ArticleControlServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>ArticleControlServlet</servlet-name>
+        <url-pattern>/posts/add</url-pattern>
+    </servlet-mapping>
+
 </web-app>

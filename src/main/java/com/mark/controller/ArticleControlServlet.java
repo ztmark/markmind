@@ -1,5 +1,10 @@
 package com.mark.controller;
 
+import com.mark.domain.Message;
+import com.mark.domain.User;
+import com.mark.service.ArticleService;
+import com.mark.utils.CommonUtil;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,11 +19,24 @@ import java.io.IOException;
  */
 @WebServlet(name = "ArticleControlServlet")
 public class ArticleControlServlet extends HttpServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+    private ArticleService service = new ArticleService();
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String title = request.getParameter("title");
+        String text = request.getParameter("text");
+        User user = (User) request.getSession().getAttribute("user");
+        Message message = service.addArticle(title, text, user.getId());
+        if (message.success) {
+            request.getSession().setAttribute("msg", "添加成功，3秒后跳转...");
+            request.getSession().setAttribute("url", request.getContextPath() + "/home");
+            request.getRequestDispatcher("/WEB-INF/message.jsp").forward(request, response);
+        } else {
+            request.getSession().setAttribute("msg", message.message);
+        }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        request.getRequestDispatcher("/WEB-INF/backend/post.jsp").forward(request, response);
     }
 }

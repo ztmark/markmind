@@ -1,6 +1,7 @@
 package com.mark.dao;
 
 import com.mark.domain.Article;
+import com.mark.domain.Message;
 import com.mark.utils.DBUtil;
 
 import java.sql.Connection;
@@ -8,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -74,6 +76,30 @@ public class ArticleDao {
             util.release(conn, ps, rs);
         }
         return article;
+    }
+
+    public boolean addArticle(Article article, int userId) {
+        String sql = "insert into article(uuid,title,text,date,user_id) values(?,?,?,?,?)";
+        Connection conn = null;
+        PreparedStatement ps = null;
+        try {
+            conn = util.getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, article.getUuid());
+            ps.setString(2, article.getTitle());
+            ps.setString(3, article.getText());
+            ps.setLong(4, System.currentTimeMillis() / 1000);
+            ps.setInt(5, userId);
+            int row = ps.executeUpdate();
+            if (row == 1) {
+                return true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            util.release(conn, ps, null);
+        }
+        return false;
     }
 
 }

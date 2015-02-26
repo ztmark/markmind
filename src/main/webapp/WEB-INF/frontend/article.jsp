@@ -48,9 +48,6 @@
                 <div id="content" class="content">
                     <textarea style="display:none;"></textarea>
                 </div>
-                <div id="text" style="display: none;">
-${article.text}
-                </div>
             </div>
         </div>
     </div>
@@ -63,7 +60,7 @@ ${article.text}
 <script src="${pageContext.request.contextPath}/assets/js/jquery-2.1.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/bootstrap.min.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/marked.js" type="text/javascript" charset="utf-8"></script>
-<script src="${pageContext.request.contextPath}/assets/js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+<%--<script src="${pageContext.request.contextPath}/assets/js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>--%>
 <script src="${pageContext.request.contextPath}/assets/js/lib/prettify.min.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/editormd.js"></script>
 <script type="text/javascript">
@@ -82,10 +79,7 @@ ${article.text}
             // 获取Markdown源码
             //console.log(testEditormdView.getMarkdown());
         }
-        var text = document.getElementById("text").innerHTML;
-        console.log(text);
-        load(text);
-        //hljs.initHighlightingOnLoad();
+        load("${article.text}");
     });
 </script>
 </body>

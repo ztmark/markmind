@@ -8,7 +8,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -22,7 +21,7 @@ public class ArticleDao {
 
 
     public List<Article> getAllArticleInfo(long userId) {
-        String sql = "select uuid, title, from_unixtime(date) AS postDate from article where user_id = ?";
+        String sql = "select uuid, title, from_unixtime(date) AS postDate from article where user_id = ? ORDER BY date DESC";
         Connection conn = null;
         PreparedStatement ps = null;
         ResultSet rs = null;

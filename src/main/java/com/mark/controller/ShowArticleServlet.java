@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.net.URI;
 
 /**
  * Author: Mark
@@ -29,7 +30,8 @@ public class ShowArticleServlet extends HttpServlet {
         String uuid = CommonUtil.getURLParam(request.getPathInfo());
         Message<Article> message = service.getArticle(uuid);
         if (message.success) {
-            request.getSession().setAttribute("article", message.getData());
+            Article article = message.getData();
+            request.getSession().setAttribute("article", article);
         } else {
             request.getSession().setAttribute("msg", message.message);
         }

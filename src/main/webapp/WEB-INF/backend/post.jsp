@@ -75,7 +75,7 @@
     });
 
     function setData() {
-        document.getElementById("text").value = testEditor.getMarkdown();
+        document.getElementById("text").value = encodeURI(testEditor.getMarkdown());
     }
 </script>
 </body>

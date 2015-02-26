@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: Mark
-  Date: 2015/2/25
-  Time: 22:24
+  Date: 2015/2/15
+  Time: 22:26
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -12,11 +12,11 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>article</title>
+    <title>Article</title>
 
     <link href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/main.css" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/editormd.preview.min.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/github.css" />
 
 </head>
 <body>
@@ -45,9 +45,7 @@
                 <div class="article-info">
                     <span class="glyphicon glyphicon-calendar"></span><time>${article.date}</time>
                 </div>
-                <div id="content" class="content">
-                    <textarea style="display:none;"></textarea>
-                </div>
+                <div id="content" class="content">${article.htmlText}</div>
                 <div id="text" style="display: none;">
 ${article.text}
                 </div>
@@ -64,29 +62,11 @@ ${article.text}
 <script src="${pageContext.request.contextPath}/assets/js/bootstrap.min.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/marked.js" type="text/javascript" charset="utf-8"></script>
 <script src="${pageContext.request.contextPath}/assets/js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
-<script src="${pageContext.request.contextPath}/assets/js/lib/prettify.min.js"></script>
-<script src="${pageContext.request.contextPath}/assets/js/editormd.js"></script>
-<script type="text/javascript">
-    var testEditormdView;
-
-    $(function() {
-        function load(markdown) {
-            testEditormdView = editormd.markdownToHTML("content", {
-                markdown : decodeURI(markdown),     // 不设置时，从<script type="text/markdown">获取markdown文档
-                htmlDecode : true,       // 开启HTML标签解析，为了安全性，默认不开启
-                tex : true              // 默认不解析
-            });
-
-            console.log("返回一个jQuery实例 =>", testEditormdView);
-
-            // 获取Markdown源码
-            //console.log(testEditormdView.getMarkdown());
-        }
-        var text = document.getElementById("text").innerHTML;
-        console.log(text);
-        load(text);
-        //hljs.initHighlightingOnLoad();
-    });
+<script>
+    //var text = document.getElementById("text").innerHTML;
+    <%--var text = "${article.text}";--%>
+    //document.getElementById("content").innerHTML = marked(text);
+    hljs.initHighlightingOnLoad();
 </script>
 </body>
 </html>

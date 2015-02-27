@@ -66,4 +66,14 @@
         <url-pattern>/posts/add</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>SettingServlet</servlet-name>
+        <servlet-class>com.mark.controller.SettingServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>SettingServlet</servlet-name>
+        <url-pattern>/setting</url-pattern>
+    </servlet-mapping>
+
 </web-app>

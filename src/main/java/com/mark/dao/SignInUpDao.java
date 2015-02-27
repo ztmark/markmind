@@ -22,7 +22,7 @@ public class SignInUpDao {
         Connection connection = util.getConnection();
         PreparedStatement ps = null;
         ResultSet rs = null;
-        String sql = "select id, email from user where username = ? and password = ? limit 1";
+        String sql = "select id, email, blog_name, motto from user where username = ? and password = ? limit 1";
         try {
             ps = connection.prepareStatement(sql);
             ps.setString(1, username);
@@ -32,6 +32,8 @@ public class SignInUpDao {
                 User user = new User();
                 user.setId(rs.getInt("id"));
                 user.setEmail(rs.getString("email"));
+                user.setBlogName(rs.getString("blog_name"));
+                user.setMotto(rs.getString("motto"));
                 user.setUsername(username);
                 user.setPassword(password);
                 return user;

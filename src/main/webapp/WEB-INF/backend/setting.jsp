@@ -12,20 +12,16 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Manage</title>
+    <title>Setting</title>
 
-    <!-- Bootstrap -->
-    <link href="../../assets/css/bootstrap.min.css" rel="stylesheet">
-    <link type="text/css" rel="stylesheet" href="../../assets/css/main.css" />
-    <script src="../../assets/js/jquery-2.1.1.min.js"></script>
+    <link href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/main.css" />
+    <script src="${pageContext.request.contextPath}/assets/js/jquery-2.1.1.min.js"></script>
     <style type="text/css">
         .panel {
             border-top: none;
             height: 250px;
             padding: 50px 30px;
-        }
-        .hide {
-            display: none;
         }
     </style>
     <script>
@@ -46,7 +42,6 @@
 <body>
 <nav class="navbar navbar-default">
     <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
             <a class="navbar-brand" href="#">
                 <span class="site-name">MarkMind</span>
@@ -54,13 +49,12 @@
             </a>
         </div>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#">主页</a></li>
             </ul>
-        </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
+        </div>
+    </div>
 </nav>
 
 <div class="container-fluid">
@@ -70,17 +64,17 @@
                 <li id="general" role="presentation" class="active" onclick="hidePwd()"><a href="javascript:void(0)" >General</a></li>
                 <li id="pwd" role="presentation" onclick="showPwd()"><a href="javascript:void(0)" >Password</a></li>
             </ul>
-            <form id="blog-form" class="form-horizontal panel panel-default">
+            <form action="setting" method="post" id="blog-form" class="form-horizontal panel panel-default">
                 <div class="form-group">
                     <label for="blog-name" class="col-sm-3 control-label">Blog Name</label>
                     <div class="col-sm-9">
-                        <input type="email" class="form-control" id="blog-name" placeholder="Blog Name">
+                        <input type="text" class="form-control" id="blog-name" name="blog-name" value="${user.blogName}" placeholder="MarkMind">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="motto" class="col-sm-3 control-label">Motto</label>
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" id="motto" placeholder="Motto">
+                        <input type="text" class="form-control" id="motto" name="motto" value="${user.motto}" placeholder="Start Blogging">
                     </div>
                 </div>
                 <div class="form-group">
@@ -90,11 +84,12 @@
                 </div>
             </form>
 
-            <form id="pwd-form" class="form-horizontal panel panel-default hide">
+            <form action="setting" method="post" id="pwd-form" class="form-horizontal panel panel-default hide">
+                <span id="message" class="text-danger"></span>
                 <div class="form-group">
                     <label for="password" class="col-sm-3 control-label">Password</label>
                     <div class="col-sm-9">
-                        <input type="password" class="form-control" id="password" placeholder="Password">
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Password">
                     </div>
                 </div>
                 <div class="form-group">
@@ -115,8 +110,22 @@
 </div>
 
 
-<!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="../../assets/js/bootstrap.min.js"></script>
-
+<script src="${pageContext.request.contextPath}/assets/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+    (function(){
+        $("#pwd-form").submit(function(e) {
+            var pwd1 = $("#password").val();
+            var pwd2 = $("#password-confirm").val();
+            var msg = $("#message");
+            if (pwd1.length < 6) {
+                msg.text("密码太短");
+                e.preventDefault();
+            } else if (pwd1 !== pwd2) {
+                msg.text("两次密码不一致");
+                e.preventDefault();
+            }
+        });
+    })();
+</script>
 </body>
 </html>

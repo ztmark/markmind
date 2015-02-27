@@ -13,6 +13,8 @@ public class User {
     private String username;
     private String email;
     private String password;
+    private String blogName;
+    private String motto;
     private List<Article> articles;
 
     public int getId() {
@@ -45,5 +47,21 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getBlogName() {
+        return blogName;
+    }
+
+    public void setBlogName(String blogName) {
+        this.blogName = blogName;
+    }
+
+    public String getMotto() {
+        return motto;
+    }
+
+    public void setMotto(String motto) {
+        this.motto = motto;
     }
 }

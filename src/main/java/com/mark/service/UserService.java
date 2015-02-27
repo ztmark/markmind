@@ -1,5 +1,6 @@
 package com.mark.service;
 
+import com.mark.dao.UserDao;
 import com.mark.domain.Message;
 import com.mark.dao.SignInUpDao;
 import com.mark.domain.User;
@@ -13,6 +14,7 @@ import com.mark.utils.CommonUtil;
 public class UserService {
 
     private SignInUpDao dao = new SignInUpDao();
+    private UserDao userDao = new UserDao();
 
 
     public User loginChecker(String username, String password) {
@@ -31,6 +33,49 @@ public class UserService {
         } else {
             return msg;
         }
+    }
+
+    public Message<User> updatePwd(User user, String newPwd) {
+        Message<User> message;
+        if (user.getPassword().equals(CommonUtil.encrypt(newPwd))) {
+            message = new Message<>(true, "密码修改成功！");
+            message.setData(user);
+            return message;
+        }
+        boolean result = userDao.updatePwd(user.getId(), CommonUtil.encrypt(newPwd));
+        if (result) {
+            message = new Message<>(true, "密码修改成功！");
+            user.setPassword(CommonUtil.encrypt(newPwd));
+        } else {
+            message = new Message<>(false, "服务器忙，请稍后重试！");
+        }
+        message.setData(user);
+        return message;
+    }
+
+    public Message<User> updateBlogInfo(User user, String blogName, String motto) {
+        Message<User> message;
+        if (blogName == null || "".equals(blogName.trim())) {
+            blogName = "MarkMind";
+        }
+        if (motto == null || "".equals(motto.trim())) {
+            motto = "Start Blogging";
+        }
+        if (user.getBlogName().equals(blogName) && user.getMotto().equals(motto)) {
+            message = new Message<>(true, "修改成功！");
+            message.setData(user);
+            return message;
+        }
+        boolean result = userDao.updateBlogInfo(user.getId(), blogName, motto);
+        if (result) {
+            message = new Message<>(true, "修改成功！");
+            user.setBlogName(blogName);
+            user.setMotto(motto);
+            message.setData(user);
+        } else {
+            message = new Message<>(false, "服务器忙，请稍后重试！");
+        }
+        return message;
     }
 
 }

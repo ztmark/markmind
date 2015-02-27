@@ -8,7 +8,7 @@
 
     <filter>
         <filter-name>EncodingFilter</filter-name>
-        <filter-class>com.mark.EncodingFilter</filter-class>
+        <filter-class>com.mark.filter.EncodingFilter</filter-class>
     </filter>
 
     <filter-mapping>

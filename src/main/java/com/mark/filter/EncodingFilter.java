@@ -1,4 +1,4 @@
-package com.mark;
+package com.mark.filter;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;

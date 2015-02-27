@@ -66,6 +66,7 @@
         <url-pattern>/posts/add</url-pattern>
     </servlet-mapping>
 
+
     <servlet>
         <servlet-name>SettingServlet</servlet-name>
         <servlet-class>com.mark.controller.SettingServlet</servlet-class>
@@ -75,5 +76,37 @@
         <servlet-name>SettingServlet</servlet-name>
         <url-pattern>/setting</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>UpdateArticleServlet</servlet-name>
+        <servlet-class>com.mark.controller.UpdateArticleServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>UpdateArticleServlet</servlet-name>
+        <url-pattern>/posts/update/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ManageServlet</servlet-name>
+        <servlet-class>com.mark.controller.ManageServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>ManageServlet</servlet-name>
+        <url-pattern>/manage</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>DeleteArticleServlet</servlet-name>
+        <servlet-class>com.mark.controller.DeleteArticleServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>DeleteArticleServlet</servlet-name>
+        <url-pattern>/posts/delete/*</url-pattern>
+    </servlet-mapping>
+
+
 
 </web-app>

@@ -98,4 +98,46 @@ public class ArticleDao {
         return false;
     }
 
+    public boolean updateArticle(Article article) {
+        String sql = "UPDATE article SET title = ?, text = ?, date = UNIX_TIMESTAMP(now()) WHERE uuid = ?";
+        Connection conn = null;
+        PreparedStatement ps = null;
+        try {
+            conn = util.getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, article.getTitle());
+            ps.setString(2, article.getText());
+            ps.setString(3, article.getUuid());
+            int row = ps.executeUpdate();
+            if (row == 1) {
+                return true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            util.release(conn, ps, null);
+        }
+        return false;
+    }
+
+    public Boolean deleteArticle(String uuid) {
+        String sql = "DELETE FROM article WHERE uuid = ?";
+        Connection conn = null;
+        PreparedStatement ps = null;
+        try {
+            conn = util.getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, uuid);
+            int row = ps.executeUpdate();
+            if (row == 1) {
+                return true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            util.release(conn, ps, null);
+        }
+        return false;
+    }
+
 }

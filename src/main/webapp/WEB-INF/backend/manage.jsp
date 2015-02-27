@@ -1,3 +1,5 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="zh-cn">
 <head>
@@ -6,15 +8,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Manage</title>
 
-    <!-- Bootstrap -->
-    <link href="../../assets/css/bootstrap.min.css" rel="stylesheet">
-    <link type="text/css" rel="stylesheet" href="../../assets/css/main.css" />
+    <link href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/main.css" />
+    <script>
+        function del(t) {
 
+            var delthis = confirm("确定要删除该条记录？");
+
+            if (!delthis) {
+                return;
+            }
+
+            var gp = t.parentNode.parentNode;
+            var tbl = gp.parentNode;
+            var uuid = gp.firstElementChild.firstElementChild.value;
+            var httpRequest;
+            if (window.XMLHttpRequest) {
+                httpRequest = new XMLHttpRequest();
+            } else if (window.ActiveXObject) {
+                try {
+                    httpRequest = new ActiveXObject("Msxml2.XMLHTTP");
+                } catch (e) {
+                    try {
+                        httpRequest = new ActiveXObject("Microsoft.XMLHTTP");
+                    } catch (e) {}
+                }
+            }
+
+            httpRequest.onreadystatechange = function () {
+                tbl.removeChild(gp);
+            };
+
+            httpRequest.open("POST","${pageContext.request.contextPath}/posts/delete/"+encodeURIComponent(uuid));
+            httpRequest.send(null);
+        }
+    </script>
 </head>
 <body>
 <nav class="navbar navbar-default">
     <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
             <a class="navbar-brand" href="#">
                 <span class="site-name">MarkMind</span>
@@ -22,20 +54,19 @@
             </a>
         </div>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">设置</a></li>
+                <li><a href="${pageContext.request.contextPath}/setting">设置</a></li>
             </ul>
-        </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
+        </div>
+    </div>
 </nav>
 
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="pull-right">
-                <a type="button" class="btn btn-lg btn-success" >新建</a>
+                <a href="${pageContext.request.contextPath}/posts/add" type="button" class="btn btn-lg btn-success" >新建</a>
             </div>
             <table class="table table-responsive table-bordered">
                 <thead>
@@ -47,59 +78,26 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td></td>
-                    <td class="post-date">2014-11-15</td>
-                    <td class="post-title">
-                        <a href="">post test</a>
-                    </td>
-                    <td>
-                        <a href="javascript:void(0)" >删除</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td class="post-date">2014-11-15</td>
-                    <td class="post-title">
-                        <a href="">post test</a>
-                    </td>
-                    <td>
-                        <a href="javascript:void(0)" >删除</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td class="post-date">2014-11-15</td>
-                    <td class="post-title">
-                        <a href="">post test</a>
-                    </td>
-                    <td>
-                        <a href="javascript:void(0)" >删除</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td class="post-date">2014-11-15</td>
-                    <td class="post-title">
-                        <a href="">post test</a>
-                    </td>
-                    <td>
-                        <a href="javascript:void(0)" >删除</a>
-                    </td>
-                </tr>
+                <c:forEach var="article" items="${articles}">
+                    <tr>
+                        <td><input type="hidden" value="${article.uuid}" /></td>
+                        <td class="post-date">${article.date}</td>
+                        <td class="post-title">
+                            <a href="posts/${article.uuid}">${article.title}</a>
+                        <td>
+                            <a href="posts/update/${article.uuid}" >更新</a>
+                            <a href="javascript:void(0)" onclick="del(this)" >删除</a>
+                        </td>
+                    </tr>
+                </c:forEach>
                 </tbody>
             </table>
         </div>
     </div>
 </div>
 
-<div class="footer col-md-8 col-md-offset-2 text-center">
-    <small> 本作品采用<a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.zh">知识共享署名-相同方式共享 3.0 未本地化版本许可协议</a>进行许可。 <br />Theme By[<a href="http://yangwenmai.github.io/">maiyang</a>]</small>
-</div>
 
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="../../assets/js/jquery-2.1.1.min.js"></script>
-<!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="../../assets/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/jquery-2.1.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/bootstrap.min.js"></script>
 </body>
 </html>

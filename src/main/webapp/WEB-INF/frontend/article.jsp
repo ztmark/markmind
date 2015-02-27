@@ -23,7 +23,7 @@
 <nav class="navbar navbar-default">
     <div class="container">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="${pageContext.request.contextPath}/home">
                 <span class="site-name">Mark's Blog</span>
                 <small class="site-motto">Never Stop Learning</small>
             </a>
@@ -74,7 +74,7 @@
                 tex : true              // 默认不解析
             });
 
-            console.log("返回一个jQuery实例 =>", testEditormdView);
+            //console.log("返回一个jQuery实例 =>", testEditormdView);
 
             // 获取Markdown源码
             //console.log(testEditormdView.getMarkdown());

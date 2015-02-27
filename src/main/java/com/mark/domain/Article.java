@@ -14,6 +14,8 @@ public class Article {
     private String uuid;
     private String title;
     private String text;
+
+
     public static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
     private Date date;
     private User user;

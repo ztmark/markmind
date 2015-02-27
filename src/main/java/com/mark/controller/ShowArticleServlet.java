@@ -34,6 +34,8 @@ public class ShowArticleServlet extends HttpServlet {
             request.getSession().setAttribute("article", article);
         } else {
             request.getSession().setAttribute("msg", message.message);
+            request.getSession().setAttribute("url", "/markmind/home");
+            request.getRequestDispatcher("/WEB-INF/message.jsp").forward(request, response);
         }
 
         request.getRequestDispatcher("/WEB-INF/frontend/article.jsp").forward(request, response);

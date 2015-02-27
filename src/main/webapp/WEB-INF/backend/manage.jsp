@@ -48,7 +48,7 @@
 <nav class="navbar navbar-default">
     <div class="container">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="${pageContext.request.contextPath}/manage">
                 <span class="site-name">MarkMind</span>
                 <small class="site-motto">Start Blogging</small>
             </a>

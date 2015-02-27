@@ -25,7 +25,7 @@
 <nav class="navbar navbar-default">
     <div class="container">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="${pageContext.request.contextPath}/manage">
                 <span class="site-name">MarkMind</span>
                 <small class="site-motto">Start Blogging</small>
             </a>
@@ -33,7 +33,7 @@
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">主页</a></li>
+                <li><a href="${pageContext.request.contextPath}/manage">主页</a></li>
             </ul>
         </div>
     </div>
@@ -69,7 +69,7 @@
             width: "90%",
             height: 550,
             tex  : true,
-            path : '../assets/js/lib/' //设置路径，再editormd.js需要加载codemirror
+            path : '../assets/js/lib/' //根据当前URL路径来设置路径，再editormd.js需要加载codemirror
         });
 
     });

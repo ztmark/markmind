@@ -39,7 +39,7 @@
                 tbl.removeChild(gp);
             };
 
-            httpRequest.open("POST","${pageContext.request.contextPath}/posts/delete/"+encodeURIComponent(uuid));
+            httpRequest.open("POST","${pageContext.request.contextPath}/manage/posts/delete/"+encodeURIComponent(uuid));
             httpRequest.send(null);
         }
     </script>
@@ -56,7 +56,7 @@
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="${pageContext.request.contextPath}/setting">设置</a></li>
+                <li><a href="${pageContext.request.contextPath}/manage/setting">设置</a></li>
             </ul>
         </div>
     </div>
@@ -66,7 +66,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="pull-right">
-                <a href="${pageContext.request.contextPath}/posts/add" type="button" class="btn btn-lg btn-success" >新建</a>
+                <a href="${pageContext.request.contextPath}/manage/posts/add" type="button" class="btn btn-lg btn-success" >新建</a>
             </div>
             <table class="table table-responsive table-bordered">
                 <thead>
@@ -85,7 +85,7 @@
                         <td class="post-title">
                             <a href="posts/${article.uuid}">${article.title}</a>
                         <td>
-                            <a href="posts/update/${article.uuid}" >更新</a>
+                            <a href="manage/posts/update/${article.uuid}" >更新</a>
                             <a href="javascript:void(0)" onclick="del(this)" >删除</a>
                         </td>
                     </tr>

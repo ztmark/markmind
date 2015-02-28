@@ -16,6 +16,16 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
+    <filter>
+        <filter-name>LoginCheckerFilter</filter-name>
+        <filter-class>com.mark.filter.LoginCheckerFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>LoginCheckerFilter</filter-name>
+        <url-pattern>/manage/*</url-pattern>
+    </filter-mapping>
+
     <servlet>
         <servlet-name>SignInServlet</servlet-name>
         <servlet-class>com.mark.controller.SignInServlet</servlet-class>
@@ -63,7 +73,7 @@
 
     <servlet-mapping>
         <servlet-name>ArticleControlServlet</servlet-name>
-        <url-pattern>/posts/add</url-pattern>
+        <url-pattern>/manage/posts/add</url-pattern>
     </servlet-mapping>
 
 
@@ -74,7 +84,7 @@
 
     <servlet-mapping>
         <servlet-name>SettingServlet</servlet-name>
-        <url-pattern>/setting</url-pattern>
+        <url-pattern>/manage/setting</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -84,7 +94,7 @@
 
     <servlet-mapping>
         <servlet-name>UpdateArticleServlet</servlet-name>
-        <url-pattern>/posts/update/*</url-pattern>
+        <url-pattern>/manage/posts/update/*</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -104,7 +114,7 @@
 
     <servlet-mapping>
         <servlet-name>DeleteArticleServlet</servlet-name>
-        <url-pattern>/posts/delete/*</url-pattern>
+        <url-pattern>/manage/posts/delete/*</url-pattern>
     </servlet-mapping>
 
 

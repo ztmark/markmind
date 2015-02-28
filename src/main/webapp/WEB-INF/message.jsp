@@ -45,7 +45,7 @@
 <div class="container-fluid">
 
     <div class="col-md-6 col-md-offset-3 text-info" style="text-align: center; margin-top: 100px">
-        ${msg}
+        ${message}
     </div>
 
 </div>

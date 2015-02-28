@@ -36,7 +36,7 @@ public class SettingServlet extends HttpServlet {
             request.getSession().setAttribute("user", message.getData());
         }
         request.getSession().setAttribute("msg", message.message);
-        request.getSession().setAttribute("url", "/markmind/setting");
+        request.getSession().setAttribute("url", request.getContextPath() + "/manage/setting");
         request.getRequestDispatcher("/WEB-INF/message.jsp").forward(request, response);
     }
 

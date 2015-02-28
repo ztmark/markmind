@@ -41,7 +41,7 @@
 <div class="container-fluid">
     <div class="row">
         <div  class="col-md-8 col-md-offset-2 pull-right">
-            <form action="${pageContext.request.contextPath}/posts/update/${article.uuid}" method="post" class="form-inline">
+            <form action="${pageContext.request.contextPath}/manage/posts/update/${article.uuid}" method="post" class="form-inline">
                 <div class="form-group">
                     <label for="title">Title</label>
                     <input type="text" name="title" class="form-control" value="${article.title}" id="title" placeholder="Title">
@@ -70,7 +70,7 @@
             width: "90%",
             height: 550,
             tex  : true,
-            path : '../../assets/js/lib/' //根据当前URL路径来设置路径，再editormd.js需要加载codemirror
+            path : '../../../assets/js/lib/' //根据当前URL路径来设置路径，再editormd.js需要加载codemirror
         });
 
     });

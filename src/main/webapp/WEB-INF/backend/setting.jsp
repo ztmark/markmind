@@ -64,7 +64,7 @@
                 <li id="general" role="presentation" class="active" onclick="hidePwd()"><a href="javascript:void(0)" >General</a></li>
                 <li id="pwd" role="presentation" onclick="showPwd()"><a href="javascript:void(0)" >Password</a></li>
             </ul>
-            <form action="setting" method="post" id="blog-form" class="form-horizontal panel panel-default">
+            <form action="manage/setting" method="post" id="blog-form" class="form-horizontal panel panel-default">
                 <div class="form-group">
                     <label for="blog-name" class="col-sm-3 control-label">Blog Name</label>
                     <div class="col-sm-9">
@@ -84,7 +84,7 @@
                 </div>
             </form>
 
-            <form action="setting" method="post" id="pwd-form" class="form-horizontal panel panel-default hide">
+            <form action="manage/setting" method="post" id="pwd-form" class="form-horizontal panel panel-default hide">
                 <span id="message" class="text-danger"></span>
                 <div class="form-group">
                     <label for="password" class="col-sm-3 control-label">Password</label>

@@ -27,7 +27,7 @@ public class SignInServlet extends HttpServlet {
         if (user != null) {
             request.getSession().setAttribute("user", user);
             request.getSession().setAttribute("message", "登录成功，3秒后跳转...");
-            request.getSession().setAttribute("url", request.getContextPath() + "/home");
+            request.getSession().setAttribute("url", request.getContextPath() + "/manage");
             request.getRequestDispatcher("WEB-INF/message.jsp").forward(request, response);
         } else {
             request.getSession().setAttribute("msg", "用户名或密码错误");
@@ -39,7 +39,7 @@ public class SignInServlet extends HttpServlet {
         User user = (User) request.getSession().getAttribute("user");
         if (user != null) {
             request.getSession().setAttribute("message", "您已登录，3秒后跳转...");
-            request.getSession().setAttribute("url", request.getContextPath() + "/home");
+            request.getSession().setAttribute("url", request.getContextPath() + "/manage");
             request.getRequestDispatcher("WEB-INF/message.jsp").forward(request, response);
         } else {
             request.getRequestDispatcher("WEB-INF/frontend/login.jsp").forward(request, response);

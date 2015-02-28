@@ -25,6 +25,10 @@ public class ArticleControlServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String title = request.getParameter("title");
         String text = request.getParameter("text");
+        if (title == null || "".equals(title.trim()) || text == null || "".equals(text)) {
+            request.getSession().setAttribute("msg", "请填写标题和内容");
+            request.getRequestDispatcher(request.getContextPath() + "/manage/posts/add").forward(request, response);
+        }
         User user = (User) request.getSession().getAttribute("user");
         Message message = service.addArticle(title, text, user.getId());
         if (message.success) {
@@ -32,7 +36,7 @@ public class ArticleControlServlet extends HttpServlet {
         } else {
             request.getSession().setAttribute("message", message.message);
         }
-        request.getSession().setAttribute("url", request.getContextPath() + "/home");
+        request.getSession().setAttribute("url", request.getContextPath() + "/manage");
         request.getRequestDispatcher("/WEB-INF/message.jsp").forward(request, response);
     }
 

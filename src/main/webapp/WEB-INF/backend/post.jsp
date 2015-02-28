@@ -42,12 +42,13 @@
     <div class="row">
         <div  class="col-md-8 col-md-offset-2 pull-right">
             <form action="${pageContext.request.contextPath}/manage/posts/add" method="post" class="form-inline">
+                <span id="message" class="text-danger">${msg}</span>
                 <div class="form-group">
                     <label for="title">Title</label>
                     <input type="text" name="title" class="form-control" id="title" placeholder="Title">
                 </div>
                 <input type="hidden" id="text" name="text" />
-                <button type="submit" class="btn btn-default" onclick="setData()">Post</button>
+                <button type="submit" class="btn btn-default" >Post</button>
             </form>
         </div>
     </div>
@@ -74,9 +75,20 @@
 
     });
 
-    function setData() {
+    $("form").submit(function(e) {
+        var title = $("#title").val();
+        if (title === null || title === undefined || title === "") {
+            $("#message").text("请填写标题");
+            e.preventDefault();
+        }
+        var content = testEditor.getMarkdown();
+        if (content === null || content === undefined || content === "") {
+            $("#message").text("请填写文章内容");
+            e.preventDefault();
+        }
         document.getElementById("text").value = encodeURI(testEditor.getMarkdown());
-    }
+    });
+
 </script>
 </body>
 </html>

@@ -1,9 +1,11 @@
 package com.mark.dao;
 
+import com.mark.domain.User;
 import com.mark.utils.DBUtil;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
@@ -54,5 +56,51 @@ public class UserDao {
         return false;
     }
 
+    public User getBlogInfo(String username) {
+        String sql = "select blog_name, motto from user where username = ?";
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            User blogInfo = new User();
+            conn = util.getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, username);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                blogInfo.setBlogName(rs.getString("blog_name"));
+                blogInfo.setMotto(rs.getString("motto"));
+                blogInfo.setUsername(username);
+            }
+            return blogInfo;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            util.release(conn, ps, rs);
+        }
+        return null;
+    }
+
+
+    public boolean exists(String username) {
+        String sql = "select id from user where username = ?";
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            conn = util.getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, username);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                return true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            util.release(conn, ps, rs);
+        }
+        return false;
+    }
 
 }

@@ -1,5 +1,7 @@
 package com.mark.domain;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -63,5 +65,16 @@ public class User {
 
     public void setMotto(String motto) {
         this.motto = motto;
+    }
+
+    public List<Article> getArticles() {
+        return Collections.unmodifiableList(this.articles);
+    }
+
+    public void setArticles(List<Article> articles) {
+        if (this.articles == null) {
+            this.articles = new ArrayList<>();
+        }
+        this.articles.addAll(articles);
     }
 }

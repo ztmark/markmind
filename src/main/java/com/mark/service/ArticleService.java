@@ -1,8 +1,10 @@
 package com.mark.service;
 
 import com.mark.dao.ArticleDao;
+import com.mark.dao.UserDao;
 import com.mark.domain.Article;
 import com.mark.domain.Message;
+import com.mark.domain.User;
 import com.mark.utils.CommonUtil;
 
 import java.util.List;
@@ -15,6 +17,7 @@ import java.util.List;
 public class ArticleService {
 
     private ArticleDao dao = new ArticleDao();
+    private UserDao userDao = new UserDao();
 
     public Message<List<Article>> getAllArticle(int userId) {
         Message<List<Article>> message = null;
@@ -26,6 +29,29 @@ public class ArticleService {
             message.setData(articles);
         }
         return message;
+    }
+
+    public Message<User> getAllArticleByUserName(String username) {
+        Message<User> message = null;
+        if (!checkUser(username)) {
+            message = new Message<>(false, "URL不正确！");
+            return message;
+        }
+        List<Article> articles = dao.getAllArticleInfoByUserName(username);
+        if (articles == null) {
+            message = new Message<>(false, "服务器忙，请稍后重试！");
+        } else {
+            User user = userDao.getBlogInfo(username);
+            user.setArticles(articles);
+            message = new Message<>(true, "success");
+            message.setData(user);
+        }
+        return message;
+    }
+
+
+    private boolean checkUser(String username) {
+        return userDao.exists(username);
     }
 
     public Message<Article> getArticle(String uuid) {

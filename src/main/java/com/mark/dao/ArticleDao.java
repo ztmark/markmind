@@ -20,7 +20,7 @@ public class ArticleDao {
     private DBUtil util = new DBUtil();
 
 
-    public List<Article> getAllArticleInfo(long userId) {
+    public List<Article> getAllArticleInfo(int userId) {
         String sql = "select uuid, title, from_unixtime(date) AS postDate from article where user_id = ? ORDER BY date DESC";
         Connection conn = null;
         PreparedStatement ps = null;
@@ -30,6 +30,34 @@ public class ArticleDao {
             conn = util.getConnection();
             ps = conn.prepareStatement(sql);
             ps.setLong(1, userId);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Article article = new Article();
+                article.setUuid(rs.getString("uuid"));
+                article.setTitle(rs.getString("title"));
+                article.setDate(rs.getDate("postDate"));
+                articles.add(article);
+            }
+            return articles;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            articles = null;
+        } finally {
+            util.release(conn, ps, rs);
+        }
+        return articles;
+    }
+
+    public List<Article> getAllArticleInfoByUserName(String username) {
+        String sql = "select uuid, title, from_unixtime(date) AS postDate from article AS a INNER JOIN user AS u ON a.user_id=u.id WHERE u.username=? ORDER BY date DESC";
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        List<Article> articles = new ArrayList<>();
+        try {
+            conn = util.getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, username);
             rs = ps.executeQuery();
             while (rs.next()) {
                 Article article = new Article();

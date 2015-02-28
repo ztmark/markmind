@@ -17,9 +17,9 @@
 <nav class="navbar navbar-default">
     <div class="container">
         <div class="navbar-header">
-            <a class="navbar-brand" href="${pageContext.request.contextPath}/home">
-                <span class="site-name">Mark's Blog</span>
-                <small class="site-motto">Never Stop Learning</small>
+            <a class="navbar-brand" href="${pageContext.request.contextPath}/home/${blogInfo.username}">
+                <span class="site-name">${blogInfo.blogName}</span>
+                <small class="site-motto">${blogInfo.motto}</small>
             </a>
         </div>
 
@@ -48,7 +48,7 @@
                         <td></td>
                         <td class="post-date">${article.date}</td>
                         <td class="post-title">
-                            <a href="posts/${article.uuid}">${article.title}</a>
+                            <a href="${pageContext.request.contextPath}/posts/${article.uuid}">${article.title}</a>
                         </td>
                     </tr>
                 </c:forEach>

@@ -4,6 +4,7 @@ import com.mark.domain.Article;
 import com.mark.domain.Message;
 import com.mark.domain.User;
 import com.mark.service.ArticleService;
+import com.mark.utils.CommonUtil;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -28,15 +29,20 @@ public class HomeServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        User user = (User) request.getSession().getAttribute("user");
-        Message<List<Article>> message = service.getAllArticle(user.getId());
+        String username = CommonUtil.getURLParam(request.getPathInfo());
+        if (username == null || "".equals(username)) {
+            request.getSession().setAttribute("message", "URL不正确。");
+            request.getRequestDispatcher("/WEB-INF/message.jsp").forward(request, response);
+        }
+        Message<User> message = service.getAllArticleByUserName(username);
         if (message.success) {
-            request.getSession().setAttribute("articles", message.getData());
+            User unLogUser = message.getData();
+            request.getSession().setAttribute("blogInfo",unLogUser);
+            request.getSession().setAttribute("articles", unLogUser.getArticles());
             request.getRequestDispatcher("/WEB-INF/frontend/index.jsp").forward(request, response);
         } else {
             request.getSession().setAttribute("message", message.message);
             request.getRequestDispatcher("/WEB-INF/message.jsp").forward(request, response);
         }
-
     }
 }

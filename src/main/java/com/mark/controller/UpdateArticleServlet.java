@@ -29,11 +29,11 @@ public class UpdateArticleServlet extends HttpServlet {
         String text = request.getParameter("text");
         Message message = service.updateArticle(uuid, title, text);
         if (message.success) {
-            request.getSession().setAttribute("msg", "更新成功，3秒后跳转...");
+            request.getSession().setAttribute("message", "更新成功，3秒后跳转...");
             request.getSession().setAttribute("url", request.getContextPath() + "/manage");
             request.getRequestDispatcher("/WEB-INF/message.jsp").forward(request, response);
         } else {
-            request.getSession().setAttribute("msg", message.message);
+            request.getSession().setAttribute("message", message.message);
             request.getSession().setAttribute("url", request.getContextPath() + "/manage");
             request.getRequestDispatcher("/WEB-INF/message.jsp").forward(request, response);
         }
@@ -46,7 +46,7 @@ public class UpdateArticleServlet extends HttpServlet {
             request.getSession().setAttribute("article", message.getData());
             request.getRequestDispatcher("/WEB-INF/backend/update.jsp").forward(request, response);
         } else {
-            request.getSession().setAttribute("msg", message.message);
+            request.getSession().setAttribute("message", message.message);
             request.getSession().setAttribute("url", request.getContextPath() + "/manage");
             request.getRequestDispatcher("/WEB-INF/message.jsp").forward(request, response);
         }

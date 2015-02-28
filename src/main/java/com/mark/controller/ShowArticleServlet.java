@@ -33,7 +33,7 @@ public class ShowArticleServlet extends HttpServlet {
             Article article = message.getData();
             request.getSession().setAttribute("article", article);
         } else {
-            request.getSession().setAttribute("msg", message.message);
+            request.getSession().setAttribute("message", message.message);
             request.getSession().setAttribute("url", request.getContextPath() + "/home");
             request.getRequestDispatcher("/WEB-INF/message.jsp").forward(request, response);
         }

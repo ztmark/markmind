@@ -26,7 +26,7 @@ public class SignInServlet extends HttpServlet {
         User user = service.loginChecker(username, password);
         if (user != null) {
             request.getSession().setAttribute("user", user);
-            request.getSession().setAttribute("msg", "登录成功，3秒后跳转...");
+            request.getSession().setAttribute("message", "登录成功，3秒后跳转...");
             request.getSession().setAttribute("url", request.getContextPath() + "/home");
             request.getRequestDispatcher("WEB-INF/message.jsp").forward(request, response);
         } else {
@@ -38,7 +38,7 @@ public class SignInServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         User user = (User) request.getSession().getAttribute("user");
         if (user != null) {
-            request.getSession().setAttribute("msg", "您已登录，3秒后跳转...");
+            request.getSession().setAttribute("message", "您已登录，3秒后跳转...");
             request.getSession().setAttribute("url", request.getContextPath() + "/home");
             request.getRequestDispatcher("WEB-INF/message.jsp").forward(request, response);
         } else {

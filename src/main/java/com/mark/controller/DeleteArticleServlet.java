@@ -25,7 +25,7 @@ public class DeleteArticleServlet extends HttpServlet {
         String uuid = CommonUtil.getURLParam(request.getPathInfo());
         Message message = service.deleteArticle(uuid);
         if (!message.success) {
-            request.getSession().setAttribute("msg", message.message);
+            request.getSession().setAttribute("message", message.message);
             request.getSession().setAttribute("url", request.getContextPath() + "/manage");
             request.getRequestDispatcher("/WEB-INF/message.jsp").forward(request, response);
         }

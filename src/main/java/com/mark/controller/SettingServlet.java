@@ -35,7 +35,7 @@ public class SettingServlet extends HttpServlet {
         if (message.success) {
             request.getSession().setAttribute("user", message.getData());
         }
-        request.getSession().setAttribute("msg", message.message);
+        request.getSession().setAttribute("message", message.message);
         request.getSession().setAttribute("url", request.getContextPath() + "/manage/setting");
         request.getRequestDispatcher("/WEB-INF/message.jsp").forward(request, response);
     }

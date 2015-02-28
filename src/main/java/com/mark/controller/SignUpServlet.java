@@ -26,7 +26,7 @@ public class SignUpServlet extends HttpServlet {
         String password = request.getParameter("password").trim();
         Message message = service.addUser(username, email, password);
         if (message.success) {
-            request.getSession().setAttribute("msg", "注册成功，3秒后跳转...");
+            request.getSession().setAttribute("message", "注册成功，3秒后跳转...");
             request.getSession().setAttribute("url", request.getContextPath() + "/signin");
             request.getRequestDispatcher("WEB-INF/message.jsp").forward(request, response);
         } else {

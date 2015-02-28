@@ -32,9 +32,11 @@ public class HomeServlet extends HttpServlet {
         Message<List<Article>> message = service.getAllArticle(user.getId());
         if (message.success) {
             request.getSession().setAttribute("articles", message.getData());
+            request.getRequestDispatcher("/WEB-INF/frontend/index.jsp").forward(request, response);
         } else {
-            request.getSession().setAttribute("msg", message.message);
+            request.getSession().setAttribute("message", message.message);
+            request.getRequestDispatcher("/WEB-INF/message.jsp").forward(request, response);
         }
-        request.getRequestDispatcher("WEB-INF/frontend/index.jsp").forward(request, response);
+
     }
 }

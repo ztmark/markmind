@@ -28,12 +28,12 @@ public class ArticleControlServlet extends HttpServlet {
         User user = (User) request.getSession().getAttribute("user");
         Message message = service.addArticle(title, text, user.getId());
         if (message.success) {
-            request.getSession().setAttribute("msg", "添加成功，3秒后跳转...");
-            request.getSession().setAttribute("url", request.getContextPath() + "/home");
-            request.getRequestDispatcher("/WEB-INF/message.jsp").forward(request, response);
+            request.getSession().setAttribute("message", "添加成功，3秒后跳转...");
         } else {
-            request.getSession().setAttribute("msg", message.message);
+            request.getSession().setAttribute("message", message.message);
         }
+        request.getSession().setAttribute("url", request.getContextPath() + "/home");
+        request.getRequestDispatcher("/WEB-INF/message.jsp").forward(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

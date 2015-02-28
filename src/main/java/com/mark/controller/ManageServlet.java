@@ -34,7 +34,7 @@ public class ManageServlet extends HttpServlet {
             request.getSession().setAttribute("articles", message.getData());
             request.getRequestDispatcher("/WEB-INF/backend/manage.jsp").forward(request, response);
         } else {
-            request.getSession().setAttribute("msg", message.message);
+            request.getSession().setAttribute("message", message.message);
             request.getSession().setAttribute("url", request.getContextPath() + "/home");
             request.getRequestDispatcher("/WEB-INF/message.jsp").forward(request, response);
         }
